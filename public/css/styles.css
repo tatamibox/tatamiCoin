@@ -28,3 +28,25 @@ nav a {
 nav a:hover {
     color: #ffd60a;
 }
+
+* {
+    color: white;
+}
+
+.yellow {
+    color: #ffc300;
+}
+
+.emphasized {
+    font-weight: bold;
+    font-size: 5rem;
+}
+
+.main {
+    height: 100%;
+}
+
+.explore {
+    width: 30%;
+    text-align: center;
+}
