@@ -52,3 +52,12 @@ nav a:hover {
     width: 30%;
     text-align: center;
 }
+
+.btc,
+.ethereum,
+.solana {
+    height: 4rem;
+    width: 10rem;
+    border-radius: 10px;
+    border: 0.5px solid #ffc300;
+}
