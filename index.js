@@ -5,6 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ExpressError = require('./utilities/ExpressError');
 const Project = require('./models/project');
+const catchAsync = require('./utilities/catchAsync');
 //
 
 // expres config
@@ -29,16 +30,27 @@ mongoose.connect('mongodb://127.0.0.1:27017/accelerator', { useNewUrlParser: tru
 // static webpages
 
 
+
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.render('index');
 
 })
 
-app.get('/proposals', (req, res) => {
-    res.render('accelerator.ejs')
+app.get('/accelerator', async (req, res) => {
+    const p = await Project.find({});
+    res.render('accelerator', { p })
 })
 
-//
+
+app.get('/accelerator/new', (req, res) => {
+    res.render('new');
+})
+
+app.get('/accelerator/:id', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const p = await Project.findById(id);
+    res.render('show', { p })
+}))
 
 //error handling
 app.all('*', (req, res, next) => {
